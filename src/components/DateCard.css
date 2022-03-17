@@ -1,4 +1,5 @@
 
+
 .dateCard_item {
     display: flex;
     flex-direction: column;
@@ -27,7 +28,6 @@
 .dateCard_item_datemonth {
     font-size: 1rem;
     font-weight: bold;
-
 }
 
 .dateCard_item_dateyear {
@@ -39,3 +39,4 @@
     font-weight: bold;
     color:var(--ion-color-primary, #36454f);
 }
+

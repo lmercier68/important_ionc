@@ -11,5 +11,6 @@ const DateCard = (props) => {
                 <div className="dateCard_item_day">{day}</div>
             </div>
     )
+
 }
 export default DateCard;
