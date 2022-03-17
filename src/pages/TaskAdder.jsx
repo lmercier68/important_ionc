@@ -35,12 +35,10 @@ const TaskAdder = () => {
         financialEntity.side = !side;
     }
     const onChangeGenderHandler = (event) => {
-        setGender(event.target.value)
-        setRecurssivity(event.target.value);
+        setGender(event.target.value);
+        setRecurssivity(event.target.value ==="Recurrent");
     }
     const sendingNewOperationHandler = () => {
-    console.log(JSON.stringify(financialEntity));
-debugger
     }
 //</editor-fold>
 
