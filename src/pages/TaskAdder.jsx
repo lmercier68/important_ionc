@@ -4,17 +4,15 @@ import RecurssivePanel from "../components/RecurssivePanel";
 import './TaskAdder.css'
 import {IonButton, IonCheckbox, IonInput, IonLabel, IonRadio, IonRadioGroup} from "@ionic/react";
 import '@ionic/react/css/core.css';
-
+import FinancialOperation_Entity from "../Entity/FinancialOperation_Entity";
 
 const TaskAdder = () => {
+
 //<editor-fold desc="useState region">
-    const [title, setTitle] = useState("titre");
+
+    const [recurssivity, setRecurssivity] = useState(false);
     const [side, setSide] = useState(false);
     const [details, setDetails] = useState("Détails");
-    const [price, setPrice] = useState(0);
-    const [date, setDate] = useState(null);
-    const [recurssive, setRecurssive] = useState(false);
-    const [ended, setEnded] = useState(false);
 
 
     const [gender, setGender] = useState(null);
@@ -22,33 +20,42 @@ const TaskAdder = () => {
     //</editor-fold>
 //<editor-fold desc="handler region">
     const onTitleChangeHandle = (event) => {
-        setTitle(event.target.value)
+        financialEntity.title = event.target.value;
     }
     const onDetailsChangeHandle = (event) => {
         setDetails(event.target.value)
     }
     const onPriceChangeHandle = (event) => {
-        setPrice(event.target.value)
+        financialEntity.price  = event.target.value;
     }
     const onDateChangeHandle = (event) => {
-        setDate(event.target.value)
+        financialEntity.date = event.target.value;
     }
     const onSideChangeHandle = () => {
-        setSide(!side)
+        financialEntity.side = !side;
     }
     const onChangeGenderHandler = (event) => {
         setGender(event.target.value)
+        setRecurssivity(event.target.value);
+    }
+    const sendingNewOperationHandler = () => {
+    console.log(JSON.stringify(financialEntity));
+debugger
     }
 //</editor-fold>
 
+    //creation new FinancialOperation_Entity
+
+    const [financialEntity, setFinancialEntity] = useState(new FinancialOperation_Entity());
 
     return <div className="taskAdder_container">
         <Card className="choice_container">
             <center>Choisir le type d'opération :
                 <hr/>
-                <IonRadioGroup className="taskAdder_radioGroupe_type" onIonChange={event => onChangeGenderHandler(event)}>
-                   <div> <IonRadio type="radio" value="Unique" name="gender"/> Unique</div>
-                   <div> <IonRadio type="radio" value="Recurrent" name="gender"/> Récurrent</div>
+                <IonRadioGroup className="taskAdder_radioGroupe_type"
+                               onIonChange={event => onChangeGenderHandler(event)}>
+                    <div><IonRadio type="radio" value="Unique" name="gender" /> Unique</div>
+                    <div><IonRadio type="radio" value="Recurrent" name="gender"/> Récurrent</div>
                 </IonRadioGroup>
             </center>
         </Card>
@@ -57,33 +64,34 @@ const TaskAdder = () => {
             <div className="simpleTask_container">
                 <div className="simpleTask_item">
                     <IonLabel htmlFor="#titre">Titre </IonLabel>
-                    <IonInput type="text" className="ion_input_bottom" placeholder={title} onChange={onTitleChangeHandle}/>
+                    <IonInput type="text" className="ion_input_bottom" placeholder={financialEntity.title}
+                              onIonChange={event => onTitleChangeHandle(event)}/>
                 </div>
 
                 <div className="simpleTask_item">
                     <IonLabel htmlFor="#details">Détails </IonLabel>
                     <IonInput type="textArea" className="ion_input_bottom" placeholder={details}
-                              onChange={onDetailsChangeHandle}/>
+                              onIonChange={onDetailsChangeHandle}/>
                 </div>
                 <div className="simpleTask_item">
                     <IonLabel htmlFor="#date">Date </IonLabel>
                     <IonInput type="date" className="ion_input_bottom" id="date" min="2010-01-01"
-                              onChange={onDateChangeHandle}/>
+                              onIonChange={onDateChangeHandle}/>
                 </div>
                 <div className="simpleTask_item simpleTask_row_item">
                     <IonLabel htmlFor="#side">Crédit : &nbsp;</IonLabel>
-                    <IonCheckbox checked={side} onIonChange={event => onSideChangeHandle(event)}/>
+                    <IonCheckbox checked={financialEntity.side} onIonChange={event => onSideChangeHandle(event)}/>
                 </div>
 
                 <div className="simpleTask_item">
                     <IonLabel htmlFor="#price">Montant total </IonLabel>
-                    <IonInput type="number" className="ion_input_bottom" id="price"  value={price}
-                              onChange={onPriceChangeHandle}/>
+                    <IonInput type="number" className="ion_input_bottom" id="price" value={financialEntity.price}
+                              onIonChange={onPriceChangeHandle}/>
                 </div>
             </div>
-            {gender === 'Recurrent' ? <RecurssivePanel/> : null}
+            {gender === 'Recurrent' ? <RecurssivePanel operation={financialEntity}/> : null}
             <center>
-                <IonButton type="submit">Ajouter l'opération</IonButton>
+                <IonButton type="button" onClick={sendingNewOperationHandler}>Ajouter l'opération</IonButton>
             </center>
         </form> : null}
     </div>

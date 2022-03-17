@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./DateCard.css"
 
-
 const DateCard = (props) => {
     const fullDate = new Date(props.date);
     const day = fullDate.getDate()
