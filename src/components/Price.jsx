@@ -4,7 +4,7 @@ import IconContainer from "./IconContainer";
 const Price =(props) =>{
     return <div >
         <IconContainer element={props.element}/>
-        <div className="listElement_item_price">
+        <div className="listElement_item_price text_right">
             {props.element.price}&euro;
         </div>
         </div>

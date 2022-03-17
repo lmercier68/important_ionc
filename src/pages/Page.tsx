@@ -2,6 +2,8 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
 import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 import './Page.css';
+import TaskList from "../pages/TaskList"
+import TaskAdder from "../pages/TaskAdder"
 
 const Page: React.FC = () => {
 
@@ -24,7 +26,8 @@ const Page: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name={name} />
+          {name==="Taches"?<TaskList />:null}
+          {name==="Ajouter"?<TaskAdder />:null}
       </IonContent>
     </IonPage>
   );

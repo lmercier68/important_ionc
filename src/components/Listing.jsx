@@ -32,8 +32,7 @@ const Listing = (props) => {
             <Card className="listing">
                 <div className="listing_item">
                     <DateCard className="listing_item" date={date} ended={ended} outDated={{outDated}}/>
-
-                    <ListElement title={title} details={details}/>
+                    <ListElement className="listing_text" title={title} details={details}/>
                     <Price className="listElement_item_price" element={props.element}/>
                 </div>
             </Card>

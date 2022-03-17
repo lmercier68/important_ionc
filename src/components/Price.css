@@ -1,9 +1,9 @@
 .listElement_item_price {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: white;
     background-color: #40005d;
     border: 1px solid white;
-    padding: 0.5rem;
+    padding: 0.2rem;
     border-radius: 12px;
 }

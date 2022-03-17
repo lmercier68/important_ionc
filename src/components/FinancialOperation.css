@@ -1,0 +1,46 @@
+.financial_operation_item{
+    width :6.5rem;
+    height: 11.5rem;
+    border-radius : 12px;
+    border : solid 1px #1c1c1d;
+    box-shadow: 2px 3px  #ee158d;
+    background-color: white;
+}
+.waiting {
+    background-color:  #ee158d;
+}
+.paid {
+    background-color: green;
+}
+.unpaid {
+    background-color: red;
+}
+
+.financial_operation_datecard {
+    display:  flex;
+    flex-direction: row;
+    justify-content : space-around;
+}
+
+.financial_operation_content {
+
+    margin:0;
+    padding:0.3rem;
+}
+.listing_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+
+    background-color: #4b4b4b;
+    border-radius: 15px;
+}
+#financial_operation_chip_title {
+    width : 5rem;
+    color : black;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+}
