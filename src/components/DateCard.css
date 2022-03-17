@@ -1,0 +1,41 @@
+
+.dateCard_item {
+    display: flex;
+    flex-direction: column;
+    width: 5rem;
+    height: 5rem;
+    padding-top : 5px;
+    color: white;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px #ee158d;
+    background-color:#1c1c1c;
+}
+.neutral {
+    background-color:#1c1c1c;
+}
+.ended {
+    background-color: green;
+}
+.outDated {
+    background-color: #1c1c1c;
+}
+.today {
+    background-color: #1c1c1c;
+}
+.dateCard_item_datemonth {
+    font-size: 1rem;
+    font-weight: bold;
+
+}
+
+.dateCard_item_dateyear {
+    font-size: 0.8rem;
+}
+
+.dateCard_item_day {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color:var(--ion-color-primary, #36454f);
+}

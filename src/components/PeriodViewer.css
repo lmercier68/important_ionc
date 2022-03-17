@@ -1,0 +1,13 @@
+.monthPicker_container {
+color: black;
+    background-color: #464545;
+    padding:0.4rem;
+}
+.PeriodViewer_chip_Period_Selected {
+    background-color: white;
+}
+.PeriodViewer_chip_Period_label {
+    color : var(--ion-color-primary, #36454f);
+    font-size : 1.7em;
+    font-weight: bolder;
+}

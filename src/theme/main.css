@@ -1,0 +1,12 @@
+.financial_operation_container {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    column-gap: 2px;
+}
+.App{
+    background-color: #1c1c1d;
+    height:100%;
+    margin:0;
+}

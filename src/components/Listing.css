@@ -1,0 +1,25 @@
+.listing_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem;
+    margin: 0.1rem 0;
+    background-color: #4b4b4b;
+    border-radius: 15px;
+}
+.listing_item_description {
+    flex : 1;
+    flex-direction : row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.listing_text {
+    font-size : 1rem
+}
+.listing {
+    padding: 1rem;
+    background-color: rgb(31, 31, 31);
+    margin: 0 auto;
+    width: 55rem;
+    max-width:100%;
+}
