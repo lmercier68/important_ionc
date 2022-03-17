@@ -13,8 +13,6 @@ const TaskAdder = () => {
     const [recurssivity, setRecurssivity] = useState(false);
     const [side, setSide] = useState(false);
     const [details, setDetails] = useState("Détails");
-
-
     const [gender, setGender] = useState(null);
 
     //</editor-fold>
@@ -31,19 +29,18 @@ const TaskAdder = () => {
     const onDateChangeHandle = (event) => {
         financialEntity.date = event.target.value;
     }
-    const onSideChangeHandle = () => {
-        financialEntity.side = !side;
+    const onSideChangeHandle = (event) => {
+        setSide(event.target.value)
+        financialEntity.side = event.target.value;
     }
     const onChangeGenderHandler = (event) => {
         setGender(event.target.value);
         setRecurssivity(event.target.value ==="Recurrent");
     }
     const sendingNewOperationHandler = () => {
+        console.log(JSON.stringify(financialEntity));
     }
 //</editor-fold>
-
-    //creation new FinancialOperation_Entity
-
     const [financialEntity, setFinancialEntity] = useState(new FinancialOperation_Entity());
 
     return <div className="taskAdder_container">
@@ -76,13 +73,19 @@ const TaskAdder = () => {
                     <IonInput type="date" className="ion_input_bottom" id="date" min="2010-01-01"
                               onIonChange={onDateChangeHandle}/>
                 </div>
-                <div className="simpleTask_item simpleTask_row_item">
-                    <IonLabel htmlFor="#side">Crédit : &nbsp;</IonLabel>
-                    <IonCheckbox checked={financialEntity.side} onIonChange={event => onSideChangeHandle(event)}/>
+                <div className="simpleTask_item ">
+                    <IonLabel htmlFor="#side">Type d'opération : </IonLabel>
+
+                    <IonRadioGroup id="side" className="taskAdder_radioGroupe_type"
+                                   onIonChange={event => onSideChangeHandle(event)}>
+                        <br/>
+                        <div><IonRadio type="radio" value={true} name="gender" /> Crédit</div>
+                        <div><IonRadio type="radio" value={false} name="gender"/> Débit</div>
+                    </IonRadioGroup>
                 </div>
 
                 <div className="simpleTask_item">
-                    <IonLabel htmlFor="#price">Montant total </IonLabel>
+                    <IonLabel htmlFor="#price">Montant {gender==="Recurrent"?<i>(1 mensualité)</i>:null}</IonLabel>
                     <IonInput type="number" className="ion_input_bottom" id="price" value={financialEntity.price}
                               onIonChange={onPriceChangeHandle}/>
                 </div>

@@ -48,10 +48,14 @@
 .text_right {
     text-align: right;
 }
+.text_center {
+    text-align: center;
+}
 .simpleTask_row_item {
     display : flex;
     flex-direction: row;
     vertical-align: center;
+    justify-content: space-around;
 }
 
 .btn-submit {
