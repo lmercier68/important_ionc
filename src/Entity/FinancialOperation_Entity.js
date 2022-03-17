@@ -20,7 +20,7 @@ class FinancialOperation_Entity {
         detail = "",
         side = false,
         date = null,
-        recurssive = false,
+        recurssive = true,
         financialStatus = "waiting",
         lastMensuality = 0,
         isAllMensualityEquals = true,

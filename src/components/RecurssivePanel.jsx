@@ -32,11 +32,11 @@ const RecurssivePanel = (props) => {
             </div>
             <div className="simpleTask_item simpleTask_row_item">
                 {!allMonthFlag ? <IonLabel className="vertical_position_5">Nombre de répétitions : </IonLabel> : null}
-                {!allMonthFlag ? <IonInput type="number" className="text_right ion_input_bottom" id="flag_input" value={operation.recurssDuration} onIonChange={event => setmonthCountHandle(event)}/> : null}
+                {!allMonthFlag ? <IonInput type="number" className="text_center ion_input_bottom" id="flag_input" value={operation.recurssDuration} onIonChange={event => setmonthCountHandle(event)}/> : null}
             </div>
             <div className="simpleTask_item simpleTask_row_item">
                 {!allMonthFlag ? <IonLabel className="vertical_position_12">Dernière mensualité <i>(si diff)</i>:  </IonLabel> : null}
-                {!allMonthFlag ? <IonInput type="number" className="text_right ion_input_bottom" id="lastMensuality_input" placeholder={operation.lastMensuality} onIonChange={event => setLastMonthHandle(event)}/> : null}
+                {!allMonthFlag ? <IonInput type="number" className="text_center ion_input_bottom" id="lastMensuality_input" placeholder={operation.lastMensuality} onIonChange={event => setLastMonthHandle(event)}/> : null}
                 {!allMonthFlag ?<div className="vertical_position_12">&euro;</div>:null}
             </div>
 
