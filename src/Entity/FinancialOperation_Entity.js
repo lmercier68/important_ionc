@@ -15,17 +15,17 @@ class FinancialOperation_Entity {
     mensualityCost = 0.0;
 
     constructor(
-        title = "undefined",
+        title = "Indéfinit",
         price = 0.0,
         detail = "",
         side = false,
-        date = null,
+        date = new Date(),
         recurssive = true,
         financialStatus = "waiting",
         lastMensuality = 0,
-        isAllMensualityEquals = true,
+        isAllMensualityequals = true,
         creationDate = new Date(),
-        endDate = null,
+        endDate = new Date(),
         recurssDuration = 1,
         mensualityNumber = 1,
         mensualityCost = 0
@@ -38,7 +38,7 @@ class FinancialOperation_Entity {
         this.recurssive = recurssive;
         this.financialStatus = financialStatus;
         this.lastMensuality = lastMensuality;
-        this.isAllMensualityEquals = isAllMensualityEquals;
+        this.isAllMensualityequals = isAllMensualityequals;
         this.creationDate = creationDate;
         this.endDate = endDate;
         this.recurssDuration = recurssDuration;

@@ -7,12 +7,12 @@ import {IonCard, IonCheckbox, IonInput, IonLabel} from "@ionic/react";
 const RecurssivePanel = (props) => {
     const operation= props.operation;
     const allMonth = useRef();
-    const [allMonthFlag, setAllMonthFlag] = useState(operation.isAllMensualityEquals);
+    const [allMonthFlag, setAllMonthFlag] = useState(operation.isAllMensualityequals);
     const [update, setupdate] = useState(true);
 
     const onAllMonthChangeHandle = (event) => {
         setAllMonthFlag(!allMonthFlag);
-        operation.isAllMensualityEquals=allMonthFlag;
+        operation.isAllMensualityequals=allMonthFlag;
     }
     const setmonthCountHandle = (event) =>{
     operation.recurssDuration=event.target.value;
@@ -27,7 +27,7 @@ const RecurssivePanel = (props) => {
         <IonCard className="simpleTask_container">
             <div className="simpleTask_item">
                 <IonLabel htmlFor="#side">Répéter tous les mois : </IonLabel>
-                <IonCheckbox ref={allMonth} checked={operation.isAllMensualityEquals}
+                <IonCheckbox ref={allMonth} checked={operation.is_all_mensualityequals}
                             value={true} onIonChange={event => onAllMonthChangeHandle(event)}/>
             </div>
             <div className="simpleTask_item simpleTask_row_item">

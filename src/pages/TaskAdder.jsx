@@ -5,6 +5,7 @@ import './TaskAdder.css'
 import {IonButton, IonCheckbox, IonInput, IonLabel, IonRadio, IonRadioGroup} from "@ionic/react";
 import '@ionic/react/css/core.css';
 import FinancialOperation_Entity from "../Entity/FinancialOperation_Entity";
+import axios from "axios";
 
 const TaskAdder = () => {
 
@@ -24,7 +25,7 @@ const TaskAdder = () => {
         setDetails(event.target.value)
     }
     const onPriceChangeHandle = (event) => {
-        financialEntity.price  = event.target.value;
+        financialEntity.price  = parseFloat(event.target.value);
     }
     const onDateChangeHandle = (event) => {
         financialEntity.date = event.target.value;
@@ -38,7 +39,27 @@ const TaskAdder = () => {
         setRecurssivity(event.target.value ==="Recurrent");
     }
     const sendingNewOperationHandler = () => {
-        console.log(JSON.stringify(financialEntity));
+const payloadr =
+    financialEntity
+
+        console.log(payloadr);
+            fetch("https://127.0.0.1:8000/api/financial_operations", {
+            credentials: 'same-origin',
+                method: 'post',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(
+
+                    payloadr
+
+            )
+        })
+
+            .then(function (response) {
+                console.log(response);
+            });
+
     }
 //</editor-fold>
     const [financialEntity, setFinancialEntity] = useState(new FinancialOperation_Entity());
@@ -86,7 +107,7 @@ const TaskAdder = () => {
 
                 <div className="simpleTask_item">
                     <IonLabel htmlFor="#price">Montant {gender==="Recurrent"?<i>(1 mensualité)</i>:null}</IonLabel>
-                    <IonInput type="number" className="ion_input_bottom" id="price" value={financialEntity.price}
+                    <IonInput type="number" className="ion_input_bottom" id="price"  lang="en" value={financialEntity.price}
                               onIonChange={onPriceChangeHandle}/>
                 </div>
             </div>
