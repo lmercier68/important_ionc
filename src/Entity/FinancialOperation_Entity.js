@@ -45,5 +45,8 @@ class FinancialOperation_Entity {
         this.mensualityNumber = mensualityNumber;
         this.mensualityCost = mensualityCost;
     }
+    setFinancialStatus(status) {
+        this.financialStatus =status;
+    }
 }
 export default FinancialOperation_Entity;
