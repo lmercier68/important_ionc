@@ -5,7 +5,6 @@ import './TaskAdder.css'
 import {IonButton, IonCheckbox, IonInput, IonLabel, IonRadio, IonRadioGroup} from "@ionic/react";
 import '@ionic/react/css/core.css';
 import FinancialOperation_Entity from "../Entity/FinancialOperation_Entity";
-import axios from "axios";
 
 const TaskAdder = () => {
 
@@ -25,7 +24,7 @@ const TaskAdder = () => {
         setDetails(event.target.value)
     }
     const onPriceChangeHandle = (event) => {
-        financialEntity.price  = parseFloat(event.target.value);
+        financialEntity.price = parseFloat(event.target.value);
     }
     const onDateChangeHandle = (event) => {
         financialEntity.date = event.target.value;
@@ -36,26 +35,25 @@ const TaskAdder = () => {
     }
     const onChangeGenderHandler = (event) => {
         setGender(event.target.value);
-        setRecurssivity(event.target.value ==="Recurrent");
+        setRecurssivity(!event.target.value);
+        financialEntity.recurssive=event.target.value;
+    }
+    const onStatusChangeHandle = (event) => {
+        financialEntity.financialStatus = event.target.value;
     }
     const sendingNewOperationHandler = () => {
-const payloadr =
-    financialEntity
+        const payloadr = financialEntity;
 
-        console.log(payloadr);
-            fetch("https://127.0.0.1:8000/api/financial_operations", {
+        fetch("https://127.0.0.1:8000/api/financial_operations", {
             credentials: 'same-origin',
-                method: 'post',
+            method: 'post',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(
-
-                    payloadr
-
+                payloadr
             )
         })
-
             .then(function (response) {
                 console.log(response);
             });
@@ -70,13 +68,13 @@ const payloadr =
                 <hr/>
                 <IonRadioGroup className="taskAdder_radioGroupe_type"
                                onIonChange={event => onChangeGenderHandler(event)}>
-                    <div><IonRadio type="radio" value="Unique" name="gender" /> Unique</div>
-                    <div><IonRadio type="radio" value="Recurrent" name="gender"/> Récurrent</div>
+                    <div><IonRadio type="radio" value={false} name="gender"/> Unique</div>
+                    <div><IonRadio type="radio" value={true} name="gender"/> Récurrent</div>
                 </IonRadioGroup>
             </center>
         </Card>
 
-        {gender ? <form>
+        <form>
             <div className="simpleTask_container">
                 <div className="simpleTask_item">
                     <IonLabel htmlFor="#titre">Titre </IonLabel>
@@ -96,26 +94,38 @@ const payloadr =
                 </div>
                 <div className="simpleTask_item ">
                     <IonLabel htmlFor="#side">Type d'opération : </IonLabel>
-
                     <IonRadioGroup id="side" className="taskAdder_radioGroupe_type"
                                    onIonChange={event => onSideChangeHandle(event)}>
                         <br/>
-                        <div><IonRadio type="radio" value={true} name="gender" /> Crédit</div>
+                        <div><IonRadio type="radio" value={true} name="gender"/> Crédit</div>
                         <div><IonRadio type="radio" value={false} name="gender"/> Débit</div>
                     </IonRadioGroup>
                 </div>
-
+                <div className="simpleTask_item ">
+                    <IonLabel htmlFor="#status">Etat de l'opération : </IonLabel>
+                    <IonRadioGroup id="status" className="taskAdder_radioGroupe_type"
+                                   onIonChange={event => onStatusChangeHandle(event)}>
+                        <br/>
+                        <div><IonRadio type="radio" value={'wating'} name="gender"/> A payer</div>
+                        <div><IonRadio type="radio" value={'paid'} name="gender"/> Règlé</div>
+                        <div><IonRadio type="radio" value={'unpaid'} name="gender"/> Impayé</div>
+                    </IonRadioGroup>
+                </div>
                 <div className="simpleTask_item">
-                    <IonLabel htmlFor="#price">Montant {gender==="Recurrent"?<i>(1 mensualité)</i>:null}</IonLabel>
-                    <IonInput type="number" className="ion_input_bottom" id="price"  lang="en" value={financialEntity.price}
+                    <IonLabel htmlFor="#price">Montant {
+                        gender?
+                            <i>(1 mensualité)</i> : null}
+                    </IonLabel>
+                    <IonInput type="number" className="ion_input_bottom" id="price" lang="en"
+                              value={financialEntity.price}
                               onIonChange={onPriceChangeHandle}/>
                 </div>
             </div>
-            {gender === 'Recurrent' ? <RecurssivePanel operation={financialEntity}/> : null}
-            <center>
+            {gender?<RecurssivePanel operation={financialEntity}/>:null}
+                <center>
                 <IonButton type="button" onClick={sendingNewOperationHandler}>Ajouter l'opération</IonButton>
             </center>
-        </form> : null}
+        </form>
     </div>
 }
 export default TaskAdder;

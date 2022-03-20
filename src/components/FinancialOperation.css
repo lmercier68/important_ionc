@@ -7,13 +7,15 @@
     background-color: white;
 }
 .waiting {
-    background-color:  #ee158d;
+    border: 1px solid #ee158d;
+    background-color: white;
 }
 .paid {
-    background-color: green;
+    color :var(--ion-color-primary);
+    border: 5px solid  green;
 }
 .unpaid {
-    background-color: red;
+    border: 5px solid  red;
 }
 
 .financial_operation_datecard {
@@ -37,7 +39,8 @@
     border-radius: 15px;
 }
 #financial_operation_chip_title {
-    width : 5rem;
+    width : 5.3rem;
+    margin-right: 1.5em;
     color : black;
     font-size: 1rem;
     font-weight: bold;

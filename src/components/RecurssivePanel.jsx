@@ -15,11 +15,11 @@ const RecurssivePanel = (props) => {
         operation.isAllMensualityequals=allMonthFlag;
     }
     const setmonthCountHandle = (event) =>{
-    operation.recurssDuration=event.target.value;
+    operation.recurssDuration=parseInt(event.target.value);
     setupdate(!update);
     }
     const setLastMonthHandle = (event) =>{
-        operation.lastMensuality = event.target.value;
+        operation.lastMensuality = parseFloat(event.target.value);
         setupdate(!update);
     }
 
