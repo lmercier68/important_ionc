@@ -43,7 +43,7 @@ const FinancialOperation = (props) => {
         }
     }
 
-    const [taskStatus, setTaskStatus] = useState(null)
+    const [taskStatus, setTaskStatus] = useState("waiting")
 
     function checkTaskStatus() {
 
@@ -52,27 +52,45 @@ const FinancialOperation = (props) => {
         //payer
         if (props.element.financialStatus === "paid") {
             setTaskStatus('paid')
+
         }
         //non payer et date depassé
-        if (props.element.financialStatus === "unpaid" &&( date - now <= 0)) {
-            setTaskStatus('unpaid')
-        }
-        //non payer et date non depassée
-        if (props.element.financialStatus === "unpaid" && (date - now >= 0)) {
+        if (props.element.financialStatus === "unpaid" &&( date - now < 0)) {
             setTaskStatus('waiting')
         }
+        //non payer et date non depassée
+        if (props.element.financialStatus === "unpaid" && (date - now > 0)) {
+            setTaskStatus('unpaid')
+        }
     }
-    const statusChangeHandle = (event) =>{
-    setTaskStatus('paid')
-        props.element.setFinancialStatus('paid');
+    //financial status change handle
+    const statusChangeHandle =  (event) =>{
+        let payload = props.element;
+        setTaskStatus('paid')
+        payload.financialStatus='paid';
+       fetch("https://127.0.0.1:8000/api/financial_operations/"+ props.element.id, {
+            credentials: 'same-origin',
+            method: 'put',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(
+               payload
+            )
+        })
+
+        console.log(event.target.className)
     }
+   const modifityOperation =(id)=>{
+
+   }
     useEffect(() => {
         checkTaskStatus();
     })
 
     return <IonCard className={"financial_operation_item"}>
         <IonCardContent className="financial_operation_content">
-            <IonChip className={taskStatus} id="financial_operation_chip_title" onClick={statusChangeHandle}>{title} </IonChip>
+            <IonChip className={taskStatus} id="financial_operation_chip_title" onClick={event =>{statusChangeHandle(event)}}>{title} </IonChip>
             <div className="financial_operation_datecard" onClick={statusChangeHandle}>
                 <DateCard date={date} ended={ended} outDated={outDated} className="financial_operation_datecard" onClick={statusChangeHandle}/>
             </div>
